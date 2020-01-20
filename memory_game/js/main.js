@@ -22,11 +22,20 @@ let cards = [
 ];
 let cardsInPlay = [];
 
+let wins = 0;
+let losses = 0;
+
 function checkForMatch() {
+  let winScore = document.getElementById("winScore");
+  let loseScore = document.getElementById("loseScore");
   if (cardsInPlay[0] === cardsInPlay[1]) {
     alert("You found a match!");
+    wins++;
+    winScore.textContent = wins;
   } else {
     alert("Sorry, try again.");
+    losses++;
+    loseScore.textContent = losses;
   }
 }
 
@@ -56,3 +65,28 @@ function createBoard() {
 }
 
 createBoard();
+
+/*
+when button is clicked
+img src attribute becomes card back
+cardsInPlay array equals empty array
+*/
+
+function resetGame() {
+  cardsInPlay = [];
+  let cardImages = document.getElementsByTagName("img");
+  for (i = 0; i < 4; i++) {
+    cardImages[i].setAttribute("src", "images/back.png");
+  }
+}
+
+let resetButton = document.querySelector("button");
+resetButton.addEventListener("click", resetGame);
+
+/*
+create wins variable
+create losses variable
+when match is checked
+if match is true, wins + 1
+if false, losses + 1
+*/
